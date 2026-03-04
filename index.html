@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>بيانات شمامسة كنيسة العذراء</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☦</text></svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--b9:#4A3728;--b7:#6B4226;--b6:#8B5E3C;--b4:#8B7355;--gold:#D4A853;--goldd:#C4943F;--cream:#FFF8EE;--creamd:#F5EDE0;--bdr:#E8D5B7;--red:#C0392B;--green:#27AE60}
+    body{font-family:'Amiri',Georgia,serif;background:linear-gradient(175deg,var(--cream),var(--creamd) 50%,#EDE4D3);color:var(--b9);min-height:100vh}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+
+    .status{display:flex;align-items:center;justify-content:center;gap:8px;padding:6px 16px;font-size:12px;transition:.3s}
+    .status.on{background:#E8F8F0;color:var(--green)}.status.off{background:#FDEDEC;color:var(--red)}.status.load{background:#FFF3E0;color:#E67E22}
+    .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+    .status.on .dot{background:var(--green)}.status.off .dot{background:var(--red)}.status.load .dot{background:#E67E22;animation:pulse 1s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+    .hdr{background:linear-gradient(135deg,var(--b9),var(--b7) 40%,var(--b6));padding:32px 24px 28px;text-align:center;position:relative;overflow:hidden}
+    .hdr::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(255,255,255,.02) 30px,rgba(255,255,255,.02) 60px)}
+    .hdr>div{position:relative;z-index:1}
+    .hdr .cx{font-size:36px;color:var(--gold);margin-bottom:8px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+    .hdr h1{font-size:26px;color:var(--cream);margin-bottom:6px;text-shadow:0 1px 4px rgba(0,0,0,.2)}
+    .hdr p{font-size:14px;color:var(--gold);letter-spacing:1px}
+
+    .stats{display:flex;gap:16px;padding:16px 24px;background:rgba(74,55,40,.06);border-bottom:1px solid var(--bdr);justify-content:center;flex-wrap:wrap}
+    .si{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:70px}
+    .si .n{font-size:22px;font-weight:700;color:var(--b6)}.si .l{font-size:11px;color:var(--b4)}
+
+    .bar{display:flex;gap:12px;padding:16px 24px;align-items:center;flex-wrap:wrap}
+    .abtn{background:var(--b6);color:#FFF;border:none;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.2s;white-space:nowrap}
+    .abtn:hover{background:var(--b7)}
+    .sw{flex:1;min-width:200px;position:relative}
+    .sw .ic{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none}
+    .si-input{width:100%;padding:10px 40px 10px 36px;border:1.5px solid var(--bdr);border-radius:8px;font-size:14px;font-family:inherit;direction:rtl;background:#FFF;color:var(--b9);outline:none;transition:.2s}
+    .si-input:focus{border-color:var(--b6);box-shadow:0 0 0 3px rgba(139,94,60,.1)}
+    .cls{position:absolute;left:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--b4);cursor:pointer;font-size:14px}
+
+    .ebar{display:flex;gap:8px;padding:0 24px 16px;flex-wrap:wrap}
+    .ebtn{background:transparent;border:1.5px solid var(--bdr);padding:6px 14px;border-radius:8px;font-size:12px;color:var(--b7);cursor:pointer;font-family:inherit;transition:.2s}
+    .ebtn:hover{background:var(--creamd);border-color:var(--b4)}
+
+    .tw{padding:0 24px 24px;overflow-x:auto}
+    table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;border:1px solid var(--bdr);background:#FFF}
+    th{background:linear-gradient(180deg,var(--b9),#5C4433);color:var(--bdr);padding:12px 14px;font-size:13px;font-weight:600;text-align:center;white-space:nowrap;border-left:1px solid rgba(255,255,255,.08);cursor:pointer;user-select:none}
+    th:hover{background:linear-gradient(180deg,#5C4433,var(--b9))}
+    td{padding:10px 14px;font-size:13px;text-align:center;border-bottom:1px solid #F0E6D6;border-left:1px solid #F0E6D6}
+    tr.ev{background:#FDFBF7}tr.od{background:#FFF9F0}tbody tr:hover{background:#F5EDE0!important}
+    .nc{font-weight:600;color:var(--b9)}
+    .rb{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--goldd));color:#FFF;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:600;box-shadow:0 1px 3px rgba(212,168,83,.3)}
+    .mc{direction:ltr}
+    .ib{background:none;border:1px solid var(--bdr);border-radius:6px;padding:4px 8px;cursor:pointer;font-size:14px;transition:.15s}
+    .ib:hover{background:var(--creamd);border-color:var(--b4)}
+    .ac{display:flex;gap:6px;justify-content:center}
+    .emp{text-align:center;padding:60px 24px;color:var(--b4)}.emp .cx{font-size:48px;margin-bottom:12px}
+    .ft{text-align:center;padding:12px 24px;font-size:13px;color:var(--b4)}
+
+    .ov{position:fixed;inset:0;background:rgba(74,55,40,.5);display:flex;align-items:center;justify-content:center;z-index:100;backdrop-filter:blur(4px);padding:16px}
+    .ov.h{display:none}
+    .mod{background:#FFFBF5;border-radius:16px;width:100%;max-width:600px;max-height:90vh;overflow:auto;box-shadow:0 20px 60px rgba(74,55,40,.25)}
+    .mh{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--bdr)}
+    .mh h2{font-size:20px;font-weight:700}
+    .xb{background:none;border:none;font-size:20px;cursor:pointer;color:var(--b4)}
+    .fg{padding:20px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .fd label{display:block;font-size:13px;font-weight:600;color:var(--b7);margin-bottom:6px}
+    .fd label .rq{color:var(--red)}
+    .fd input,.fd select{width:100%;padding:10px 12px;border:1.5px solid var(--bdr);border-radius:8px;font-size:14px;font-family:inherit;color:var(--b9);background:#FFF;outline:none;transition:.2s}
+    .fd input:focus,.fd select:focus{border-color:var(--b6);box-shadow:0 0 0 3px rgba(139,94,60,.1)}
+    .fa{display:flex;gap:12px;padding:16px 24px 24px}
+    .sb{background:var(--b6);color:#FFF;border:none;padding:10px 28px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.2s}
+    .sb:hover{background:var(--b7)}.sb:disabled{opacity:.6;cursor:not-allowed}.sb.rd{background:var(--red)}.sb.rd:hover{background:#A93226}
+    .cb{background:transparent;color:var(--b4);border:1.5px solid var(--bdr);padding:10px 24px;border-radius:8px;font-size:14px;cursor:pointer;font-family:inherit;transition:.2s}
+    .cb:hover{background:#eee}
+
+    .vm{background:#FFFBF5;border-radius:16px;width:100%;max-width:480px;overflow:hidden;box-shadow:0 20px 60px rgba(74,55,40,.25)}
+    .vh{background:linear-gradient(135deg,var(--b9),var(--b7));padding:28px 24px 20px;text-align:center;position:relative}
+    .vh .cx{font-size:24px;color:var(--gold);margin-bottom:8px}
+    .vh h2{color:var(--cream);font-size:22px;margin-bottom:8px}
+    .vh .rk{display:inline-block;background:rgba(212,168,83,.25);color:var(--gold);padding:4px 16px;border-radius:20px;font-size:13px;font-weight:600;border:1px solid rgba(212,168,83,.3)}
+    .vh .cv{position:absolute;top:12px;left:12px;background:none;border:none;color:rgba(255,255,255,.6);font-size:18px;cursor:pointer}
+    .vb{padding:20px 24px}
+    .vr{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F0E6D6;gap:12px}
+    .vr .vl{font-size:13px;color:var(--b4);font-weight:600;flex-shrink:0}
+    .vr .vv{font-size:14px;color:var(--b9);text-align:left}
+    .vas{display:flex;gap:10px;padding:16px 24px 24px;justify-content:center}
+    .eb{background:var(--b6);color:#FFF;border:none;padding:8px 20px;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit}
+    .eb:hover{background:var(--b7)}
+    .db{background:transparent;color:var(--red);border:1.5px solid var(--red);padding:8px 20px;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit}
+    .db:hover{background:#fdf0ef}
+
+    .cm{background:#FFFBF5;border-radius:16px;padding:32px;max-width:360px;box-shadow:0 20px 60px rgba(74,55,40,.25);text-align:center}
+    .cm p{font-size:18px;margin-bottom:20px}
+    .ca{display:flex;gap:12px;justify-content:center}
+
+    .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--b9);color:#FFF;padding:12px 24px;border-radius:10px;font-size:14px;font-family:inherit;z-index:200;opacity:0;transition:.3s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+    .toast.show{opacity:1}
+    .spin{width:40px;height:40px;border:3px solid var(--bdr);border-top:3px solid var(--b6);border-radius:50%;animation:sp 1s linear infinite;margin:0 auto 16px}
+    @keyframes sp{to{transform:rotate(360deg)}}
+
+    @media(max-width:600px){.hdr h1{font-size:20px}.bar{flex-direction:column}.sw{min-width:unset;width:100%}.fg{grid-template-columns:1fr}th,td{padding:8px 6px;font-size:12px}}
+    @media print{.bar,.ebar,.status,.abtn,.ib,.ac,th:last-child,td:last-child{display:none!important}.hdr{padding:16px}body{background:#FFF}}
+  </style>
+</head>
+<body>
+
+<div class="status load" id="st"><span class="dot"></span><span id="stx">جارٍ الاتصال...</span></div>
+
+<div class="hdr"><div>
+  <div class="cx">☦</div>
+  <h1>بيانات شمامسة كنيسة العذراء</h1>
+  <p>قاعدة بيانات الشمامسة</p>
+</div></div>
+
+<div class="stats" id="stats"></div>
+
+<div class="bar">
+  <button class="abtn" onclick="openAdd()">+ إضافة شماس جديد</button>
+  <div class="sw">
+    <span class="ic">🔍</span>
+    <input class="si-input" id="src" placeholder="بحث بالاسم، الرتبة، الموبايل..." oninput="render()" />
+    <button class="cls" id="clr" onclick="clrS()" style="display:none">✕</button>
+  </div>
+</div>
+
+<div class="ebar">
+  <button class="ebtn" onclick="expCSV()">📥 تصدير CSV</button>
+  <button class="ebtn" onclick="window.print()">🖨️ طباعة</button>
+</div>
+
+<div class="tw" id="tw"><div style="text-align:center;padding:60px"><div class="spin"></div><p style="color:var(--b4)">جارٍ تحميل البيانات...</p></div></div>
+<div class="ft" id="ft"></div>
+
+<!-- Form -->
+<div class="ov h" id="fov" onclick="clsF()"><div class="mod" onclick="event.stopPropagation()">
+  <div class="mh"><h2 id="ftl">إضافة شماس جديد</h2><button class="xb" onclick="clsF()">✕</button></div>
+  <div class="fg">
+    <div class="fd"><label>الاسم ثلاثي <span class="rq">*</span></label><input id="f_fullName" /></div>
+    <div class="fd"><label>تاريخ الميلاد</label><input type="date" id="f_birthDate" /></div>
+    <div class="fd"><label>الرتبة</label><select id="f_rank"><option value="">اختر الرتبة</option><option value="أبصالتس">أبصالتس</option><option value="أناغنوستيس">أناغنوستيس</option><option value="إيبودياكون">إيبودياكون</option><option value="دياكون">دياكون</option><option value="أرشيدياكون">أرشيدياكون</option></select></div>
+    <div class="fd"><label>تاريخ السيامة</label><input type="date" id="f_ordinationDate" /></div>
+    <div class="fd"><label>الاسم فى السيامة</label><input id="f_ordinationName" /></div>
+    <div class="fd"><label>أب الاعتراف</label><input id="f_confessionFather" /></div>
+    <div class="fd"><label>المهنة أو الوظيفة</label><input id="f_profession" /></div>
+    <div class="fd"><label>رقم الموبايل</label><input type="tel" id="f_mobile" dir="ltr" /></div>
+    <div class="fd"><label>محل الإقامة</label><input id="f_residence" /></div>
+  </div>
+  <div class="fa"><button class="sb" id="sbtn" onclick="submit()">إضافة الشماس</button><button class="cb" onclick="clsF()">إلغاء</button></div>
+</div></div>
+
+<!-- View -->
+<div class="ov h" id="vov" onclick="clsV()"><div class="vm" onclick="event.stopPropagation()">
+  <div class="vh"><div class="cx">☦</div><h2 id="vn"></h2><span class="rk" id="vrk"></span><button class="cv" onclick="clsV()">✕</button></div>
+  <div class="vb" id="vbd"></div>
+  <div class="vas"><button class="eb" id="veb">✏️ تعديل</button><button class="db" id="vdb">🗑️ حذف</button></div>
+</div></div>
+
+<!-- Delete -->
+<div class="ov h" id="dov" onclick="clsD()"><div class="cm" onclick="event.stopPropagation()">
+  <p>هل أنت متأكد من حذف هذا الشماس؟</p>
+  <div class="ca"><button class="sb rd" id="cdb">نعم، حذف</button><button class="cb" onclick="clsD()">إلغاء</button></div>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const F=['fullName','birthDate','rank','ordinationDate','ordinationName','confessionFather','profession','mobile','residence'];
+const L={birthDate:'تاريخ الميلاد',ordinationDate:'تاريخ السيامة',ordinationName:'الاسم فى السيامة',confessionFather:'أب الاعتراف',profession:'المهنة / الوظيفة',mobile:'رقم الموبايل',residence:'محل الإقامة'};
+const R=['أبصالتس','أناغنوستيس','إيبودياكون','دياكون','أرشيدياكون'];
+
+let data=[],eid=null,sf='fullName',sd='asc';
+
+function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)}
+function setS(t,m){const b=document.getElementById('st');b.className='status '+t;document.getElementById('stx').textContent=m}
+
+// API
+async function load(){
+  try{
+    const r=await fetch('/api/deacons');
+    const j=await r.json();
+    if(j.success){data=j.data;setS('on','متصل — البيانات محدثة');stats();render()}
+    else setS('off','خطأ في البيانات');
+  }catch(e){setS('off','خطأ في الاتصال — تأكد من السيرفر');render()}
+}
+
+// Stats
+function stats(){
+  let h=`<div class="si"><span class="n">${data.length}</span><span class="l">إجمالي الشمامسة</span></div>`;
+  R.forEach(r=>{const c=data.filter(d=>d.rank===r).length;if(c)h+=`<div class="si"><span class="n">${c}</span><span class="l">${r}</span></div>`});
+  document.getElementById('stats').innerHTML=h;
+}
+
+// Render
+function render(){
+  const s=(document.getElementById('src').value||'').toLowerCase();
+  document.getElementById('clr').style.display=s?'block':'none';
+  let list=data;
+  if(s)list=data.filter(d=>(d.fullName||'').toLowerCase().includes(s)||(d.ordinationName||'').toLowerCase().includes(s)||(d.rank||'').toLowerCase().includes(s)||(d.confessionFather||'').toLowerCase().includes(s)||(d.mobile||'').includes(s)||(d.residence||'').toLowerCase().includes(s));
+  list=[...list].sort((a,b)=>{const va=(a[sf]||'').toLowerCase(),vb=(b[sf]||'').toLowerCase();return sd==='asc'?va.localeCompare(vb,'ar'):vb.localeCompare(va,'ar')});
+
+  const w=document.getElementById('tw'),ft=document.getElementById('ft');
+  if(!list.length){w.innerHTML=`<div class="emp"><div class="cx">☦</div><p>${s?'لا توجد نتائج':'لم يتم إضافة شمامسة بعد'}</p>${!s?'<br><button class="abtn" onclick="openAdd()">+ إضافة أول شماس</button>':''}</div>`;ft.innerHTML='';return}
+
+  const si=f=>sf!==f?'<span style="opacity:.3;font-size:10px">⇅</span>':`<span style="font-size:10px">${sd==='asc'?'▲':'▼'}</span>`;
+  const cols=[{k:'fullName',l:'الاسم'},{k:'rank',l:'الرتبة'},{k:'mobile',l:'الموبايل'},{k:'confessionFather',l:'أب الاعتراف'},{k:'residence',l:'محل الإقامة'}];
+
+  let h='<table><thead><tr><th>#</th>';
+  cols.forEach(c=>h+=`<th onclick="srt('${c.k}')">${c.l} ${si(c.k)}</th>`);
+  h+='<th>إجراءات</th></tr></thead><tbody>';
+  list.forEach((d,i)=>{
+    h+=`<tr class="${i%2?'od':'ev'}"><td>${i+1}</td><td class="nc">${esc(d.fullName)}</td><td>${d.rank?`<span class="rb">${esc(d.rank)}</span>`:''}</td><td class="mc">${esc(d.mobile)}</td><td>${esc(d.confessionFather)}</td><td>${esc(d.residence)}</td><td><div class="ac"><button class="ib" onclick="view(${d.id})">👁️</button><button class="ib" onclick="edit(${d.id})">✏️</button><button class="ib" onclick="cdel(${d.id})">🗑️</button></div></td></tr>`;
+  });
+  h+='</tbody></table>';
+  w.innerHTML=h;
+  ft.innerHTML=`عدد النتائج: ${list.length}${s?` من ${data.length}`:''}`;
+}
+
+function srt(f){if(sf===f)sd=sd==='asc'?'desc':'asc';else{sf=f;sd='asc'}render()}
+function clrS(){document.getElementById('src').value='';render()}
+
+// Form
+function openAdd(){eid=null;F.forEach(f=>document.getElementById('f_'+f).value='');document.getElementById('ftl').textContent='إضافة شماس جديد';document.getElementById('sbtn').textContent='إضافة الشماس';document.getElementById('sbtn').disabled=false;document.getElementById('fov').classList.remove('h')}
+function clsF(){document.getElementById('fov').classList.add('h')}
+
+function edit(id){
+  const d=data.find(x=>x.id===id);if(!d)return;
+  eid=id;F.forEach(f=>document.getElementById('f_'+f).value=d[f]||'');
+  document.getElementById('ftl').textContent='تعديل بيانات الشماس';
+  document.getElementById('sbtn').textContent='حفظ التعديلات';
+  document.getElementById('sbtn').disabled=false;
+  document.getElementById('fov').classList.remove('h');clsV();
+}
+
+async function submit(){
+  const name=document.getElementById('f_fullName').value.trim();
+  if(!name){alert('الرجاء إدخال الاسم ثلاثي');return}
+  const body={};F.forEach(f=>body[f]=document.getElementById('f_'+f).value.trim());
+  const btn=document.getElementById('sbtn');btn.disabled=true;btn.textContent='جارٍ الحفظ...';
+  try{
+    const url=eid?`/api/deacons/${eid}`:'/api/deacons';
+    const r=await fetch(url,{method:eid?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const j=await r.json();
+    if(j.success){toast(eid?'✅ تم التحديث':'✅ تم الإضافة');await load();clsF()}
+    else{alert(j.error||'خطأ');btn.disabled=false;btn.textContent=eid?'حفظ التعديلات':'إضافة الشماس'}
+  }catch(e){alert('خطأ في الاتصال');btn.disabled=false;btn.textContent=eid?'حفظ التعديلات':'إضافة الشماس'}
+}
+
+// View
+function view(id){
+  const d=data.find(x=>x.id===id);if(!d)return;
+  document.getElementById('vn').textContent=d.fullName;
+  const rk=document.getElementById('vrk');rk.textContent=d.rank||'';rk.style.display=d.rank?'inline-block':'none';
+  let h='';['birthDate','ordinationDate','ordinationName','confessionFather','profession','mobile','residence'].forEach(f=>{if(d[f])h+=`<div class="vr"><span class="vl">${L[f]}</span><span class="vv">${esc(d[f])}</span></div>`});
+  document.getElementById('vbd').innerHTML=h;
+  document.getElementById('veb').onclick=()=>edit(id);
+  document.getElementById('vdb').onclick=()=>cdel(id);
+  document.getElementById('vov').classList.remove('h');
+}
+function clsV(){document.getElementById('vov').classList.add('h')}
+
+// Delete
+let did=null;
+function cdel(id){did=id;document.getElementById('cdb').onclick=async()=>{try{const r=await fetch(`/api/deacons/${did}`,{method:'DELETE'});const j=await r.json();if(j.success){toast('🗑️ تم الحذف');await load()}}catch(e){alert('خطأ')}clsD();clsV()};document.getElementById('dov').classList.remove('h')}
+function clsD(){document.getElementById('dov').classList.add('h')}
+
+// Export
+function expCSV(){
+  if(!data.length){alert('لا توجد بيانات');return}
+  const h=['الاسم ثلاثي','تاريخ الميلاد','الرتبة','تاريخ السيامة','الاسم فى السيامة','أب الاعتراف','المهنة','رقم الموبايل','محل الإقامة'];
+  let c='\uFEFF'+h.join(',')+'\n';
+  data.forEach(d=>{c+=F.map(f=>`"${(d[f]||'').replace(/"/g,'""')}"`).join(',')+'\n'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/csv;charset=utf-8;'}));a.download='شمامسة_كنيسة_العذراء.csv';a.click();
+}
+
+// Auto refresh every 30s
+setInterval(load,30000);
+load();
+</script>
+</body>
+</html>
